@@ -1,0 +1,1 @@
+This project ingests historical football match data from the 2021–2022 season across Europe’s top five leagues using a daily incremental approach. The pipeline is orchestrated with Apache Airflow and follows an ELT architecture, loading raw data into a warehouse before applying transformations for analytical use cases.
