@@ -17,7 +17,6 @@ DROP TABLE IF EXISTS bronze.competitions CASCADE;
 CREATE TABLE bronze.competitions (
     cmt_id INT PRIMARY KEY, 
     name VARCHAR(50),            
-    country VARCHAR(50),       
     code VARCHAR(10),               
     type VARCHAR(50),                 
     emblem VARCHAR(250)            
