@@ -1,5 +1,5 @@
 import psycopg2
-from extract import extract_matches, extract_teams
+from scripts.extract import extract_matches, extract_teams
 import os 
 from dotenv import load_dotenv
 from datetime import timedelta
@@ -19,13 +19,20 @@ def load_bronze():
 
     # Get the latest date to get new data 
     cur.execute("""
-        SELECT MAX(utc_date)
-        FROM bronze.matches;
+        SELECT MAX(date)
+        FROM bronze.dates;
     """)
     latest_date = (cur.fetchone()[0])
+    print(latest_date)
     new_date = latest_date + timedelta(days=1)
-    new_date=new_date.date()
-
+    
+    
+    # Add new date for tomorrow
+    cur.execute(f"""
+    INSERT INTO bronze.dates(date)
+    VALUES
+    (CAST('{new_date}' AS DATE));
+    """)
 
 
     data=extract_matches(new_date, new_date)

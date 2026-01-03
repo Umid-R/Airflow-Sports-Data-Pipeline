@@ -56,3 +56,14 @@ CREATE TABLE bronze.matches (
     half_time_home INT,              
     half_time_away INT              
 );
+
+
+-- ========================
+-- Dates
+-- ========================
+
+DROP TABLE IF EXISTS bronze.dates CASCADE;
+CREATE TABLE bronze.dates (
+    date_id serial PRIMARY KEY,
+    date DATE  
+);
