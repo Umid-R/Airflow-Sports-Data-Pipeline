@@ -1,14 +1,20 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
-from datetime import datetime
+from datetime import datetime, timedelta
 from scripts.load_bronze import load_bronze
 
+
+default_args = {
+    "retries": 3,
+    "retry_delay": timedelta(minutes=5),
+}
 
 with DAG(
     dag_id="bronze_load_daily",
     start_date=datetime(2024, 1, 1),
-    schedule_interval="5 0 * * *",
+    schedule_interval="0 12 * * *",
+    default_args=default_args,
     catchup=False
 ) as dag:
 
