@@ -13,9 +13,10 @@ default_args = {
 with DAG(
     dag_id="bronze_load_daily",
     start_date=datetime(2024, 1, 1),
-    schedule_interval="0 12 * * *",
+    schedule_interval = "0 6 * * *",
     default_args=default_args,
-    catchup=False
+    catchup=False,
+    max_active_runs=1
 ) as dag:
 
     load_bronze_task = PythonOperator(
