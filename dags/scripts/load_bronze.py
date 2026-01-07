@@ -1,5 +1,5 @@
 import psycopg2
-from scripts.extract import extract_matches, extract_teams
+from .extract_data import extract_matches, extract_teams
 import os 
 from dotenv import load_dotenv
 from datetime import timedelta
