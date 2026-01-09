@@ -54,7 +54,8 @@ CREATE TABLE silver.matches(
     home_team_id INT,                                
     away_team_id INT,                               
     winner VARCHAR(20),                            
-    full_time_home INT,                             
+    full_time_home INT,
+    full_time_away INT ,                            
     half_time_home INT,                            
     half_time_away INT                               
 );

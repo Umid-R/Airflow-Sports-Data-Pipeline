@@ -61,6 +61,7 @@ BEGIN
         away_team_id,
         winner,
         full_time_home,
+        full_time_away,
         half_time_home,
         half_time_away
     )
@@ -76,6 +77,7 @@ BEGIN
         m.away_team_id,
         m.winner,
         m.full_time_home,
+        m.full_time_away,
         m.half_time_home,
         m.half_time_away
     FROM bronze.matches m

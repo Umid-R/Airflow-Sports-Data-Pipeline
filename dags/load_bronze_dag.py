@@ -14,7 +14,7 @@ default_args = {
 with DAG(
     dag_id="load_bronze",
     start_date=datetime(2024, 1, 1),
-    schedule_interval="15 10 * * *",
+    schedule_interval="30 10 * * *",
     default_args=default_args,
     catchup=False,
     max_active_runs=1
