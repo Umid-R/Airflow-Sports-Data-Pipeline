@@ -13,7 +13,8 @@ headers = {
     "X-Auth-Token": API_KEY
 }
 
-competitions = ['PL', 'SA', 'FL1', 'BL1', 'PD']
+competitions = ["PL", "PD", "SA", "BL1", "FL1"]
+
 
 # 🔁 Create session with retries
 session = requests.Session()
