@@ -10,10 +10,10 @@ load_dotenv()
 API_KEY = os.getenv("FOOTBALL_DATA_API_KEY")
 
 headers = {
-    "X-Auth-Token": API_KEY
+    "x-apisports-key": API_KEY
 }
 
-competitions = ["PL", "PD", "SA", "BL1", "FL1"]
+competitions = [140,39,135,61,78]
 
 
 # 🔁 Create session with retries
@@ -32,12 +32,13 @@ def extract_matches(dateFrom: datetime, dateTo: datetime):
 
     data = []
     for com in competitions:
-        url = f"https://api.football-data.org/v4/competitions/{com}/matches"
+        url = "https://v3.football.api-sports.io/fixtures"
         params = {
+            "league":com,
             "season": year,
-            "dateFrom": dateFrom.strftime("%Y-%m-%d"),
-            "dateTo": dateTo.strftime("%Y-%m-%d"),
-            "status": "FINISHED"
+            "from": dateFrom.strftime("%Y-%m-%d"),
+            "to": dateTo.strftime("%Y-%m-%d"),
+            "status": "ft"
         }
 
         response = session.get(
@@ -48,7 +49,7 @@ def extract_matches(dateFrom: datetime, dateTo: datetime):
         )
         response.raise_for_status()
         data.append(response.json())
-
+   
     return data
 
 
@@ -57,8 +58,11 @@ def extract_teams(date: datetime):
 
     teams = []
     for com in competitions:
-        url = f"https://api.football-data.org/v4/competitions/{com}/teams"
-        params = {"season": year}
+        url = "https://v3.football.api-sports.io/teams"
+        params = {
+            "season": year,
+            'league':com
+            }
 
         response = session.get(
             url,
