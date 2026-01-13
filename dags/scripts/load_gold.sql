@@ -39,17 +39,11 @@ SELECT
     SUM(draw) AS draws,
     SUM(loss) AS losses,
     SUM(goals_scored) AS goals_scored,
-    SUM(goals_conceded) AS goals_conceded
+    SUM(goals_conceded) AS goals_conceded,
+    SUM(goals_scored)-SUM(goals_conceded) AS goal_difference,
+    round((SUM(win)*3+SUM(draw)::DECIMAL)/COUNT(*),1) as points_per_match,
+    round(SUM(win)::DECIMAL/COUNT(*),1)*100 || '%' AS win_rate,
+    SUM(win)*3+SUM(draw)*1::DECIMAL AS points
 FROM team_match_flat
 GROUP BY competition_id, team_id
-ORDER BY competition_id, wins DESC;
-
-
-
-
-SELECT *
-FROM gold.team_performance;
-
-
-
-
+ORDER BY competition_id, points DESC;
