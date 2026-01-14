@@ -15,11 +15,11 @@ Script Purpose:
 
 DROP TABLE IF EXISTS silver.competitions CASCADE;
 CREATE TABLE silver.competitions(
-    competition_id INT PRIMARY KEY,                
-    competition_name VARCHAR(50) NOT NULL,         
-    competition_code VARCHAR(10),                
-    competition_type VARCHAR(50),                 
-    competition_emblem VARCHAR(250)                
+    league_id INT PRIMARY KEY,                
+    league_name VARCHAR(50) NOT NULL,         
+    league_country VARCHAR(50),                
+    league_logo VARCHAR(250),                 
+    league_flag VARCHAR(250)                
 );
 
 
@@ -32,10 +32,9 @@ CREATE TABLE silver.teams(
     team_id INT PRIMARY KEY,                     
     name VARCHAR(50),                               
     short_name VARCHAR(20),                        
-    team_abbr VARCHAR(10),                       
-    team_logo VARCHAR(250),                       
-    competition_id INT                             
-);
+    country VARCHAR(50),                       
+    team_logo VARCHAR(250)                       
+    );
 
 
 -- ========================
@@ -43,19 +42,18 @@ CREATE TABLE silver.teams(
 -- ========================
 
 DROP TABLE IF EXISTS silver.matches CASCADE;
-CREATE TABLE silver.matches(
-    match_id INT PRIMARY KEY,                       
-    competition_id INT,                            
-    season_id INT,                                  
-    matchday INT,                                
-    stage VARCHAR(50),                      
-    utc_date TIMESTAMP,                            
-    status VARCHAR(20),                       
-    home_team_id INT,                                
-    away_team_id INT,                               
-    winner VARCHAR(20),                            
+CREATE TABLE silver.matches (
+    match_id INT PRIMARY KEY,         
+    competition_id INT,               
+    season INT,               
+    round VARCHAR(50) ,     
+    date TIMESTAMP,             
+    status VARCHAR(20),               
+    home_team_id INT,      
+    away_team_id INT,     
+    winner VARCHAR(30),
     full_time_home INT,
-    full_time_away INT ,                            
-    half_time_home INT,                            
-    half_time_away INT                               
+    full_time_away INT,              
+    half_time_home INT,              
+    half_time_away INT              
 );
